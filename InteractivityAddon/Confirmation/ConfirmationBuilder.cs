@@ -55,7 +55,7 @@ namespace Interactivity.Confirmation
                 Users?.AsReadOnlyCollection() ?? throw new ArgumentNullException(nameof(Users)),
                 ConfirmEmote ?? throw new ArgumentNullException(nameof(ConfirmEmote)),
                 DeclineEmote ?? throw new ArgumentNullException(nameof(DeclineEmote)),
-                TimeoutedEmbed?.Build() ?? throw new ArgumentNullException(nameof(TimeoutedEmbed)),
+                TimeoutedEmbed?.Build(),
                 CancelledEmbed.Build() ?? throw new ArgumentNullException(nameof(CancelledEmbed)),
                 Deletion);
 

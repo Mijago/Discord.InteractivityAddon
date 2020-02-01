@@ -26,7 +26,7 @@ namespace Interactivity.Pagination
         /// <summary>
         /// Gets or sets the <see cref="Embed"/> which the <see cref="Paginator"/> gets modified to after a timeout.
         /// </summary>
-        public EmbedBuilder TimeoutedEmbed { get; set; } = new EmbedBuilder().WithColor(Color.Red).WithTitle("Timed out! :alarm_clock:");
+        public EmbedBuilder TimeoutedEmbed { get; set; } = null; // new EmbedBuilder().WithColor(Color.Red).WithTitle("Timed out! :alarm_clock:");
 
         /// <summary>
         /// Gets or sets what the <see cref="Paginator"/> should delete.
