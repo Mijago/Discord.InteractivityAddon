@@ -94,7 +94,7 @@ namespace Interactivity.Selection
                 Users?.AsReadOnlyCollection() ?? throw new ArgumentNullException(nameof(Users)),
                 SelectionEmbed?.Build() ?? throw new ArgumentNullException(nameof(SelectionEmbed)),
                 CancelledEmbed?.Build() ?? throw new ArgumentNullException(nameof(CancelledEmbed)),
-                TimeoutedEmbed?.Build() ?? throw new ArgumentNullException(nameof(TimeoutedEmbed)),
+                TimeoutedEmbed?.Build(), // ?? throw new ArgumentNullException(nameof(TimeoutedEmbed)),
                 Deletion,
                 Emotes?.AsReadOnlyCollection() ?? throw new ArgumentNullException(nameof(Emotes)),
                 CancelEmote ?? throw new ArgumentNullException(nameof(CancelEmote)),

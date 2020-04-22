@@ -354,7 +354,11 @@ namespace Interactivity
 
                 else if (result.IsTimeouted == true)
                 {
-                    await msg.ModifyAsync(x => x.Embed = confirmation.TimeoutedEmbed).ConfigureAwait(false);
+                    await msg.ModifyAsync(x =>
+                    {
+                        if (confirmation.TimeoutedEmbed != null) 
+                            x.Embed = confirmation.TimeoutedEmbed;
+                    }).ConfigureAwait(false);
                 }
 
                 return result;
@@ -436,7 +440,11 @@ namespace Interactivity
                 }
                 else if (result.IsTimeouted == true)
                 {
-                    await msg.ModifyAsync(x => x.Embed = selection.TimeoutedEmbed).ConfigureAwait(false);
+                    await msg.ModifyAsync(x =>
+                    {
+                        if (selection.TimeoutedEmbed != null) 
+                            x.Embed = selection.TimeoutedEmbed;
+                    }).ConfigureAwait(false);
                 }
 
                 return result;
@@ -525,6 +533,7 @@ namespace Interactivity
                 {
                     await msg.ModifyAsync(x =>
                     {
+                        if (selection.TimeoutedEmbed == null) return;
                         x.Embed = selection.TimeoutedEmbed;
                         x.Content = null;
                     }).ConfigureAwait(false);
@@ -623,11 +632,9 @@ namespace Interactivity
                     await msg.RemoveAllReactionsAsync();
                     await msg.ModifyAsync(x =>
                     {
-                        if (paginator.TimeoutedEmbed != null)
-                        {
-                            x.Embed = paginator.TimeoutedEmbed;
-                            x.Content = null;
-                        }
+                        if (paginator.TimeoutedEmbed == null) return;
+                        x.Embed = paginator.TimeoutedEmbed;
+                        x.Content = null;
                     }).ConfigureAwait(false);
                 }
 
