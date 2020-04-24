@@ -343,6 +343,11 @@ namespace Interactivity
                         ? new InteractivityResult<bool>(default, timeout ?? DefaultTimeout, true, false)
                         : new InteractivityResult<bool>(default, DateTime.UtcNow - startTime, false, true);
 
+                if (await msg.Channel.GetMessageAsync(msg.Id) == null)
+                {
+                    return result;
+                }
+                
                 if (confirmation.Deletion.HasFlag(DeletionOptions.AfterCapturedContext))
                 {
                     await msg.DeleteAsync().ConfigureAwait(false);
@@ -430,6 +435,11 @@ namespace Interactivity
                         ? new InteractivityResult<T>(default, timeout ?? DefaultTimeout, true, false)
                         : new InteractivityResult<T>(default, DateTime.UtcNow - startTime, false, true);
 
+                if (await msg.Channel.GetMessageAsync(msg.Id) == null)
+                {
+                    return result;
+                }
+                
                 if (selection.Deletion.HasFlag(DeletionOptions.AfterCapturedContext) == true)
                 {
                     await msg.DeleteAsync().ConfigureAwait(false);
@@ -516,6 +526,11 @@ namespace Interactivity
                     : task_result == timeoutTask
                         ? new InteractivityResult<T>(default, timeout ?? DefaultTimeout, true, false)
                         : new InteractivityResult<T>(default, DateTime.UtcNow - startTime, false, true);
+                
+                if (await msg.Channel.GetMessageAsync(msg.Id) == null)
+                {
+                    return result;
+                }
 
                 if (selection.Deletion.HasFlag(DeletionOptions.AfterCapturedContext) == true)
                 {
@@ -613,7 +628,15 @@ namespace Interactivity
                 var result = task_result == timeoutTask
                     ? new InteractivityResult<object>(default, timeout ?? DefaultTimeout, true, false)
                     : new InteractivityResult<object>(default, DateTime.UtcNow - startTime, false, true);
-
+                
+                
+                // simply return if the message got deleted
+                if (await msg.Channel.GetMessageAsync(msg.Id) == null)
+                {
+                    return result;
+                }
+                    
+                
                 if (paginator.Deletion.HasFlag(DeletionOptions.AfterCapturedContext) == true)
                 {
                     await msg.DeleteAsync().ConfigureAwait(false);
