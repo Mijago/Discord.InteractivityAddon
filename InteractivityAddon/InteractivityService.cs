@@ -312,11 +312,11 @@ namespace Interactivity
 
                 if (!confirmation.GetFilter().Invoke(reaction))
                 {
-                    await confirmation.GetActions().Invoke(reaction, true).ConfigureAwait(false);
+                    await confirmation.GetActions().Invoke(reaction, false).ConfigureAwait(false);
                     return;
                 }
 
-                await confirmation.GetActions().Invoke(reaction, false).ConfigureAwait(false);
+                await confirmation.GetActions().Invoke(reaction, true).ConfigureAwait(false);
 
                 if (reaction.Emote.Equals(confirmation.ConfirmEmote))
                 {
